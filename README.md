@@ -54,7 +54,7 @@
       </li>
       <li>
         This is used by JSX (the syntax that looks like HTML in React) under the hood to create React elements.
-        When you write `<div className="my-class">Hello World</div>`, it is transformed into a call to `React.createElement('div', { className: 'my-class' }, 'Hello World')`.
+        When you write `<.div className="my-class">Hello World</.div>`, it is transformed into a call to `React.createElement('div', { className: 'my-class' }, 'Hello World')`.
       </li>
       <li>
         It enables React to build the virtual DOM, which allows fast UI updates.
