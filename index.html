@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Episode 1 : Inception</h1>
+  <li>
+    A CDN (Content Delivery Network) is a network of servers distributed across different locations that helps deliver content (like images, videos, websites, etc.) to users faster and more efficiently.
+  </li>
+  <li>
+    <b>How React CDN links works behind the scenes :</b>
+    <ul>
+      <li>
+        React CDN links (like https://unpkg.com/react@18/...) point to versions of React hosted on a CDN (like unpkg, jsDelivr, etc.).
+      </li>
+      <li>
+        When your browser loads the page:
+        <ul>
+          <li>
+            It sends a request to the CDN for those files.
+          </li>
+          <li>
+            The CDN serves them from the closest server to the user.
+          </li>
+        </ul>
+      </li>
+      <li>
+        React is now available in the global scope (window.React, window.ReactDOM), and you can use it in <.script> tags like in the example.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>What is task of react-dom :</b>
+    <ul>
+      <li>
+        ReactDOM is a package that converts virtual DOM elements created with React into actual DOM elements that can be rendered in the browser.
+      </li>
+      <li>
+        It has method like <code>ReactDOM.render()</code> which takes a React element and a DOM node, and renders the React element into that DOM node.
+      </li>
+      <li>
+        It uses a method called diffing to differentiate between the old and new virtual DOM trees, and only updates the parts that have changed, making it efficient.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>React.createElement() :</b>
+    <ul>
+      <li>
+        The core function in React that creates a virtual representation of a DOM element (called a React element).
+      </li>
+      <li>
+        It takes three arguments: the type of element (like 'div', 'span', etc.), an object with properties (like className, id, etc.), and children (which can be other React elements or text).
+        If we want to add multiple children, we can pass them as an array.
+        Example:
+        <pre>
+          React.createElement('div', { className: 'my-class' }, 'Hello World');
+        </pre>
+      </li>
+      <li>
+        This is used by JSX (the syntax that looks like HTML in React) under the hood to create React elements.
+        When you write `<div className="my-class">Hello World</div>`, it is transformed into a call to `React.createElement('div', { className: 'my-class' }, 'Hello World')`.
+      </li>
+      <li>
+        It enables React to build the virtual DOM, which allows fast UI updates.
+      </li>
+    </ul>
+  </li>
+</body>
+</html>
