@@ -1,5 +1,8 @@
   <h1>Episode 1 : Inception</h1>
   <li>
+    The costliest operation in browsers is DOM manipulation and that's why React was created. Since React uses a virtual DOM, it minimizes the number of direct DOM manipulations, making updates faster and more efficient.
+  </li>
+  <li>
     A CDN (Content Delivery Network) is a network of servers distributed across different locations that helps deliver content (like images, videos, websites, etc.) to users faster and more efficiently.
   </li>
   <li>
