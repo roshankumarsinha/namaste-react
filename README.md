@@ -1,7 +1,4 @@
-<h1>Episode 1 : Inception</h1>
-  <li>
-    The costliest operation in browsers is DOM manipulation and that's why React was created. Since React uses a virtual DOM, it minimizes the number of direct DOM manipulations, making updates faster and more efficient.
-  </li>
+  <h1>Episode 1 : Inception</h1>
   <li>
     A CDN (Content Delivery Network) is a network of servers distributed across different locations that helps deliver content (like images, videos, websites, etc.) to users faster and more efficiently.
   </li>
@@ -45,20 +42,21 @@
     <b>React.createElement() :</b>
     <ul>
       <li>
-        The core function in React that creates a virtual representation of a DOM element (called a React element). React elementt are
-        nothing but plain JavaScript objects that describe what the UI should look like.
+        The core function in React that creates a virtual representation of a DOM element (called a React element).
       </li>
       <li>
         It takes three arguments: the type of element (like 'div', 'span', etc.), an object with properties (like className, id, etc.), and children (which can be other React elements or text).
         If we want to add multiple children, we can pass them as an array.
         Example:
         <pre>
-          React.createElement('div', { className: 'my-class' }, 'Hello World');
+          <code>
+            React.createElement('div', { className: 'my-class' }, 'Hello World');
+          </code>
         </pre>
       </li>
       <li>
         This is used by JSX (the syntax that looks like HTML in React) under the hood to create React elements.
-        When you write `<.div className="my-class">Hello World</.div>`, it is transformed into a call to `React.createElement('div', { className: 'my-class' }, 'Hello World')`.
+        When you write `<div className="my-class">Hello World</div>`, it is transformed into a call to `React.createElement('div', { className: 'my-class' }, 'Hello World')`.
       </li>
       <li>
         It enables React to build the virtual DOM, which allows fast UI updates.
@@ -84,6 +82,7 @@
       <li>
         The tilde (~) symbol allows updates that do NOT change the second non-zero number (minor version).Allow only patch updates, but not minor or major updates.
         Example: "~18.2.0" allows updates to 18.2.3, but not 18.3.0 or 19.0.0. It just blocks minor and major version updates. Allow anything from 18.2.0 up to (but not including) 18.3.0.
+      </li>
     </ul>
   </li>
   <li>
@@ -131,6 +130,715 @@
       </li>
       <li>
         Arrow function is not hoisted, so their behavior is more predictable in larger components where the order of definition matters.
+      </li>
+    </ul>
+  </li>
+  <h1>Episode 4 : Talk is Cheap, Show me the Code</h1>
+  <li>
+    <b>Why does React recommend adding a key when mapping a list?</b>
+    <ul>
+      <li>
+        React uses keys to identify which items have changed, are added, or are removed.
+      </li>
+      <li>
+        Keys help React optimize the rendering process by allowing it to quickly determine which items need to be updated in the DOM.
+      </li>
+      <li>
+        Using index as a key is not recommended if the list can change, because it can lead to performance issues and bugs.
+      </li>
+      <li>
+        Example of using keys:
+        <pre>
+          <code>
+            // Old virtual DOM
+              &lt;ul&gt;
+                &lt;li key="1"&gt;Apple&lt;/li&gt;
+                &lt;li key="2"&gt;Banana&lt;/li&gt;
+              &lt;/ul&gt;
+            // New virtual DOM
+              &lt;ul&gt;
+                &lt;li key="2"&gt;Banana&lt;/li&gt;
+                &lt;li key="1"&gt;Apple&lt;/li&gt;
+              &lt;/ul&gt;
+          </code>
+        </pre>
+        In this example with keys, React knows that only the order changed. Without keys (or using index), React might delete and recreate the nodes, causing flicker or lost state
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>What is Reconciliation in React?</b>
+    <ul>
+      <li>
+        Reconciliation is the process by which React updates the DOM to match the latest state of the virtual DOM.
+      </li>
+      <li>
+        Whenever you update state (via useState, setState, etc.), React needs to:
+        <ul>
+          <li>
+            Compare the new virtual DOM with the previous one.
+          </li>
+          <li>
+            Identify what has changed.
+          </li>
+          <li>
+            Update only the parts of the actual DOM that have changed, rather than re-rendering the entire DOM.
+          </li>
+          <li>
+            This whole process is called reconciliation.
+          </li>
+      </li>
+      <li>
+        Real-life analogy:
+        <ul>
+          <li>
+            Imagine React is a smart editor: Instead of rewriting the entire document from scratch,
+          </li>
+          <li>
+            It looks at the before and after versions
+          </li>
+          <li>
+            And only makes small edits to fix the changes
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>
+      What is Diffing Algorithm in React?
+    </b>
+    <ul>
+      <li>
+        Diffing is the algorithm React uses to compare the old and new virtual DOM trees.
+      </li>
+      <li>
+        It works by:
+        <ul>
+          <li>
+            Comparing the root elements of both trees.
+          </li>
+          <li>
+            If they are different, React will update the entire subtree.
+          </li>
+          <li>
+            If they are the same, it will recursively compare their children.
+          </li>
+          <li>
+            This allows React to efficiently update only the parts of the DOM that have changed.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>
+      What exactly does "re-render" mean in React?
+    </b>
+    <ul>
+      <li>
+        A re-render does mean running the function component again.
+      </li>
+      <li>
+        Reacts re-render only components whose state or props have changed and their children (unless you block them with React.memo, shouldComponentUpdate, etc.)
+      </li>
+    </ul>
+  </li>
+  <h1>Episode 5 : Let's get Hooked</h1>
+  <li>
+    Hooks are normal javascript functions with special power.
+  </li>
+  <li>
+    Read useState document from : <a href="https://react.dev/reference/react/useState">React useState</a>
+  </li>
+  <h1>Episode 6 : Exploring the world</h1>
+  <li>
+    <b>useEffect hooks :</b>
+    <ul>
+      <li>
+        Read useEffect documnet from : <a href="https://react.dev/reference/react/useEffect">React useEffect</a>
+      </li>
+      <li>
+        useEffect is a hook that allows you to perform side effects in function components.
+      </li>
+      <li>
+        useEffect with no dependencies ([]) runs after every render, including the first one, similar to componentDidUpdate in class components.
+      </li>
+      <li>
+        useEffect with an empty dependency array ([]) runs only once after the initial render, similar to componentDidMount in class components.
+      </li>
+      <li>
+        useEffect with dependencies ([dep1, dep2]) runs after the initial render and whenever any of the dependencies change, similar to componentDidUpdate in class components.
+      </li>
+      <li>
+        useEffect can return a cleanup function that runs before the next effect or when the component unmounts, similar to componentWillUnmount in class components.
+      </li>
+      <li>
+        useEffect runs asynchronously after the DOM has been updated, and painted to the screen, so it does not block the browser's painting process.
+      </li>
+      <li>
+        useLayoutEffect is similar to useEffect, but it runs runs synchronously after the render but before the browser paints the UI. This means it will block the painting until the effect is completed.
+        It is useful for effects that need to read layout from the DOM and synchronously re-render.
+      </li>
+      <li>
+        Read useLayoutEffect document from : <a href="https://react.dev/reference/react/useLayoutEffect">React useLayoutEffect</a>
+      </li>
+    </ul>
+  </li>
+  <h1>Episode 7 : Finding the Path</h1>
+  <li>
+    We use react-router-dom to handle routing in React applications. Read notes from react notes from LinkedIn.
+  </li>
+  <h1>Episode 8 : Let's get Classy</h1>
+  <li>
+    <b>Class Components :</b>
+    <ul>
+      <li>
+        Class components are ES6 classes that extend React.Component. This tells React that this class is a component.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Why we use super(props) in constructor of class components:
+    <ul>
+      <li>
+        super(props) is used to call the constructor of the parent class (React.Component) and pass the props to it.
+      </li>
+      <li>
+        This is necessary to initialize the component and make the props available in this.props.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Read notes from react notes from LinkedIn about class components.
+  </li>
+  <h1>Episode 9 : Optimizing our App</h1>
+  <li>
+    <b>What is Lazy loading/Dynamic Import?</b>
+    <ul>
+      <li>
+        Lazy loading is a technique to load components only when they are needed, instead of loading them all at once.
+      </li>
+      <li>
+        React makes a single javascript bundle that contains all the components, but we can use lazy loading to split the bundle into smaller chunks so that bundle size is smaller and easy to download and parse.
+      </li>
+      <li>
+        We can use React.lazy() to lazy load a component, and Suspense to show a fallback UI while the component is loading.
+        Example:
+        <pre>
+          <code>
+            import React, { Suspense, lazy } from 'react';
+            const LazyComponent = lazy(() => import('./LazyComponent'));  // Lazy load the component, lazy takes a function that returns a promise that resolves to the component
+            function App() {
+              return (
+                &lt;Suspense fallback=&quot;Loading...&quot;&gt;  // Suspense is used to show a fallback UI while the component is loading
+                  &lt;LazyComponent /&gt;
+                &lt;/Suspense&gt;
+              );
+            }
+          </code>
+        </pre>
+      </li>
+    </ul>
+    <ul>
+      <b>How it works under the Hood?</b>
+      <li>
+        Webpack or other bundlers will create a separate chunk(separate js file) for the lazy loaded component.
+      </li>
+      <li>
+        When the component is needed, React will dynamically import the chunk and render the component.
+      </li>
+      <li>
+        When the component is loading for the first time, React will show the fallback UI defined in Suspense.
+      </li>
+      <li>
+        After the component is loaded, React will render the component and replace the fallback UI with the actual component.
+      </li>
+    </ul>
+  </li>
+  <h1>Episode 10 : Jo Dikhta hai, wo Bikta hai</h1>
+  <li>
+    <b>Advantages of using Tailwind</b>
+    <ul>
+      <li>
+        It is utility first approach, which means we can compose styles directly in HTML/JSX instead of writing custom CSS for every component.
+      </li>
+      <li>
+        No need to switch tab between HTML and CSS files, we can write styles directly in the JSX.
+      </li>
+      <li>
+        It is highly customizable, we can configure it to use our own colors, fonts, etc.
+      </li>
+      <li>
+        Smaller final bundle size, it uses a feature called PurgeCSS that removes unused styles from the final CSS file.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>How Tailwind works under the hood?</b>
+    <ul>
+      <li>
+        Tailwind is a CSS framework that provides utility classes for common styles.
+      </li>
+      <li>
+        It generates a large number of utility classes based on the configuration file (tailwind.config.js).
+      </li>
+      <li>
+        In index.css we import the Tailwind CSS styles using `@tailwind base`, `@tailwind components`, and `@tailwind utilities`.
+        Meaning of these directives:
+        <ul>
+          <li>
+            `@tailwind base` imports the base styles. These are normalized default styles that make HTML elements look consistent across all browsers like resetting margins, paddings, anchor, etc.
+          </li>
+          <li>
+            `@tailwind components` imports the component styles. These are pre-defined styles for common UI components like buttons, forms, etc.
+          </li>
+          <li>
+            `@tailwind utilities` imports the utility classes that we can use in our JSX. These are single-purpose classes that apply specific styles like margin, padding, color, etc.
+          </li>
+        </ul>
+      </li>
+      <li>
+        When we use a utility class in our JSX, it applies the corresponding styles to the element.
+      </li>
+      <li>
+        It uses PostCSS to process the CSS and remove unused styles from the final CSS file.
+      </li>
+    </ul>
+  </li>
+  <li>
+    How to use Tailwind in React using vite:
+    <ul>
+      <li>
+        Install Tailwind CSS and its dependencies:
+        <pre>
+          <code>
+            npm install -D tailwindcss postcss autoprefixer
+            npx tailwindcss init -p
+          </code>
+        </pre>
+      </li>
+      <li>
+        Configure Tailwind in tailwind.config.js:
+        <pre>
+          <code>
+            module.exports = {
+              content: [    // This is where we tell Tailwind to look for classes in our files
+                "./index.html",
+                "./src/**/*.{js,ts,jsx,tsx}",
+              ],
+              theme: {
+                extend: {},
+              },
+              plugins: [],
+            };
+          </code>
+        </pre>
+      </li>
+      <li>
+        Import Tailwind styles in index.css:
+        <pre>
+          <code>
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
+          </code>
+        </pre>
+      </li>
+      <li>
+        You can read from : <a href="https://v3.tailwindcss.com/docs/guides/vite">Tailwind CSS with Vite</a>
+      </li>
+      <li>
+        You can take example from rs-portfolio repo
+      </li>
+    </ul>
+  </li>
+  <h1>Episode 11 : Data is new Oil</h1>
+  <li>
+    <b>Higher Ordered Component :-</b>
+    <ul>
+      <li>
+        A HOC is a function that takes a component and returns a new component with additional functionality.
+      </li>
+      <li>
+        It takes a component as an argument, enhances it with additional props or functionality, and returns a new component.
+      </li>
+      <li>
+        HOC are pure functions that do not change the existing behavio of input component.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Controlled components and Uncontrolled Components :-</b>
+    <ul>
+      <li>
+        Controlled components are components that do not manage their own state. Instead, they receive their state and update functions as props from a parent component.
+      </li>
+      <li>
+        Uncontrolled components are components that manage their own state internally.
+      </li>
+      <li>
+        Controlled components are easier to test and debug, while uncontrolled components are easier to implement.
+      </li>
+      <li>
+        Example of controlled component:
+        <pre>
+          <code>
+            function ControlledInput({ value, onChange }) {
+              return (
+                &lt;input type="text" value={value} onChange={onChange} /&gt;
+              );
+            }
+          </code>
+        </pre>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>React Context :-</b>
+    <ul>
+      <li>
+        React Context is a way to share data between components without passing props down manually at every level. It's like a global object/variable that can be accessed by any component in the tree.
+      </li>
+      <li>
+        We can create a context using React.createContext() Example:
+        <pre>
+          <code>
+            import { createContext } from 'react';
+            export const ThemeContext = createContext("light");
+          </code>
+        </pre>
+      </li>
+      <li>
+        We can provide a value to the context using the Provider component:
+        <pre>
+          <code>
+            import { ThemeContext } from './ThemeContext';
+            function App() {
+              return (
+                <ThemeContext.Provider value="dark">
+                  <ChildComponent />
+                </ThemeContext.Provider>
+              );
+            }
+          </code>
+        </pre>
+      </li>
+      <li>
+        We can consume the context value in any component using the useContext hook:
+        <pre>
+          <code>
+            import { useContext } from 'react';
+            import { ThemeContext } from './ThemeContext';
+            function ChildComponent() {
+              const theme = useContext(ThemeContext);
+              return <div>Current theme: {theme}</div>;
+            }
+          </code>
+        </pre>
+      </li>
+      <li>
+        Behind the scenes, Provider defines and supply data, and Consumer reads the data.
+      </li>
+      <li>
+        We need Provider because it allows us to dynamically change the context value and get the latest value. If we don't use Provider, the context value will be static and won't change.
+      </li>
+    </ul>
+  </li>
+  <h1>Episode 12 : Let's build our store</h1>
+  <li>
+    <b>Redux :</b>
+    <ul>
+      <li>
+        Redux is a state management library. It helps manage the state of your app in a central place (called the store) so any component can access or update the data without passing props deeply.
+      </li>
+      <li>
+        We use react-redux and redux-toolkit (RTK) to integrate Redux with React.
+      </li>
+      <li>
+        We use Slices to do logical separations within redux store. Each slice is a piece of the Redux state that has its own reducer and actions.
+      </li>
+      <li>
+        We can have User slice, Cart slice, etc. Each slice can have its own reducers and actions.
+      </li>
+      <li>
+        We can create a slice using createSlice from redux-toolkit:
+        <pre>
+          <code>
+            import { createSlice } from '@reduxjs/toolkit';
+            const userSlice = createSlice({
+              name: 'user',
+              initialState: { name: '', age: 0 },
+              reducers: {
+                setName(state, action) {
+                  state.name = action.payload;    // payload contains the data, payload is object that contains the data we want to set
+                },
+                setAge(state, action) {
+                  state.age = action.payload;
+                }
+              }
+            });
+            export const { setName, setAge } = userSlice.actions;   // Export the actions to use them in components
+            export default userSlice.reducer;   // Export the reducer to use it in the store
+          </code>
+        </pre>
+      </li>
+      <li>
+        We can create a Redux store using configureStore from redux-toolkit:
+        <pre>
+          <code>
+            import { configureStore } from '@reduxjs/toolkit';
+            import userReducer from './userSlice';  // Import the user slice reducer, since we have default export in userSlice.js so we can name it anything we want
+            const store = configureStore({
+              reducer: {
+                user: userReducer
+              }
+            });
+            export default store;
+          </code>
+        </pre>
+      </li>
+      <li>
+        We can provide the store to the React app using the Provider component from react-redux:
+        <pre>
+          <code>
+            import React from 'react';
+            import ReactDOM from 'react-dom';
+            import { Provider } from 'react-redux';
+            import store from './store';
+            import App from './App';
+            ReactDOM.render(
+              &lt;Provider store={store}&gt;
+                &lt;App /&gt;
+              &lt;/Provider&gt;,
+              document.getElementById('root')
+            );
+          </code>
+        </pre>
+      </li>
+      <li>
+        We can consume the Redux state and dispatch actions in components using the useSelector and useDispatch hooks from react-redux:
+        <pre>
+          <code>
+            import React from 'react';
+            import { useSelector, useDispatch } from 'react-redux';
+            import { setName, setAge } from './userSlice';
+            function UserProfile() {
+              const user = useSelector((state) => state.user);  // Access the user slice from the Redux store
+              const dispatch = useDispatch();  // Get the dispatch function to dispatch actions
+              const handleNameChange = (e) => {
+                dispatch(setName(e.target.value));  // Dispatch the setName action with the new name
+              };
+              const handleAgeChange = (e) => {
+                dispatch(setAge(Number(e.target.value)));  // Dispatch the setAge action with the new age
+              };
+              return (
+                &lt;div&gt;
+                  &lt;h1&gt;User Profile&lt;/h1&gt;
+                  &lt;input type="text" value={user.name} onChange={handleNameChange} /&gt;
+                  &lt;input type="number" value={user.age} onChange={handleAgeChange} /&gt;
+                &lt;/div&gt;
+              );
+            }
+          </code>
+        </pre>
+      </li>
+      <li>
+        <b>How the Flow works :</b>
+        <ul>
+          <li>
+            When we enter data in the input field, it triggers the onChange event.
+          </li>
+          <li>
+            The onChange event calls the handleNameChange or handleAgeChange function.
+          </li>
+          <li>
+            The handleNameChange or handleAgeChange function dispatches the setName or setAge action with the new value.
+          </li>
+          <li>
+            The Redux store receives the action and updates the state using the corresponding reducer.
+          </li>
+          <li>
+            Since UserProfile component is subscribed to the Redux store, it re-renders with the updated state.
+          </li>
+          <li>
+            In short, the flow is: User clicks button -> Dispatch an action -> Action calls a function called reducer -> Reducer updates the cart slice.
+            Components which are subscribed to that slice will re-render with the updated state.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Why Redux is fast ?</b>
+    <ul>
+      <li>
+        If we do proper subscribing, then only the components that are subscribed to the updated slice will re-render.
+        Example:
+        <pre>
+          <code>
+            const cart = useSelector((store) => store.cart.items);  // More Efficient, because it only subscribes to the cart slice, so if any other slice updates, this component will not re-render.
+            const store = useSelector((store) => store);
+            const cart = store.cart.items;  // Less Efficient because it subscribes to the entire store, not just the cart slice, so if any other slice updates, this component will also re-render.
+          </code>
+        </pre>
+      </li>
+      <li>
+        Other reasons why redux is fast is it updates only those components that are subscribed to the updated slice, and it uses a diffing algorithm to compare the old and new state.
+        The other components that are not subscribed to the updated slice will not re-render, so it is fast.
+      </li>
+    </ul>
+  </li>
+  <h1>Detail about some other Hooks</h1>
+  <li>
+    <b>useMemo :</b>
+    <ul>
+      <li>
+        useMemo is a hook that allows you to memoize a value, so it only recalculates it when its dependencies change. Note, it does not prevent re-rendering of the component, it only prevents recalculating the value.
+      </li>
+      <li>
+        It is useful for expensive calculations that you don't want to run on every render.
+      </li>
+      <li>
+        Syntax is: We pass a function that returns the value we want to memoize, and an array of dependencies that will trigger the recalculation when they change.
+        <pre>
+          <code>
+            const memoizedValue = useMemo(() => {
+              // expensive calculation
+              return value;
+            }, [dependencies]);
+          </code>
+        </pre>
+      </li>
+      <li>
+        Example:
+        <pre>
+          <code>
+            function expensiveCalculation(items) {
+              return items.reduce((sum, item) => sum + item.price, 0);
+            }
+            function Cart({ items }) {
+              const total = useMemo(() => expensiveCalculation(items), [items]);
+              return &lt;div&gt;Total: {total}&lt;/div&gt;;
+            }
+          </code>
+        </pre>
+      </li>
+      <li>
+        In this example, the expensiveCalculation function will only be called when the items array changes, not on every render.
+      </li>
+      <li>
+        The drawback of useMemo is that it can add complexity to your code, and if used incorrectly, it can lead to bugs or performance issues.
+        Since it uses cache, it will also need space in memory, so it is not always the best solution.
+      </li>
+      <li>
+        Notes for useMemo: <a href="https://react.dev/reference/react/useMemo">useMemo</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>useCallback :</b>
+    <ul>
+      <li>
+        useCallback is a hook that allows you to memoize a function, so it only creates a new function when its dependencies change. It doesn't memoize the value, but the function itself. So, in next render, it will return the same function reference if dependencies are the same.
+      </li>
+      <li>
+        It is useful for passing functions as props to child components, so they don't re-render unnecessarily.
+      </li>
+      <li>
+        Syntax is: We pass a function that returns the value we want to memoize, and an array of dependencies that will trigger the recalculation when they change.
+        <pre>
+          <code>
+            const memoizedCallback = useCallback(() => {
+              // function logic
+            }, [dependencies]);
+          </code>
+        </pre>
+      </li>
+      <li>
+        Example:
+        <pre>
+          <code>
+            function Button({ onClick }) {
+              return &lt;button onClick={onClick}&gt;Click me&lt;/button&gt;;
+            }
+            function Parent() {
+              const handleClick = useCallback(() => {
+                console.log('Button clicked');
+              }, []);
+              return &lt;Button onClick={handleClick} /&gt;;
+            }
+          </code>
+        </pre>
+      </li>
+      <li>
+        In this example, the handleClick function will only be created once, and will not change on every render, so the Button component will not re-render unnecessarily.
+      </li>
+      <li>
+        Difference between useMemo and useCallback is that useMemo is used to memoize a value, while useCallback is used to memoize a function.
+      </li>
+      <li>
+        You can think like : useMemo is like a cache for values, while useCallback is like a cache for functions.
+        <pre>
+          <code>
+            function useCallback(fn, dependencies) {
+              return useMemo(() => fn, dependencies);
+            }
+          </code>
+        </pre>
+      </li>
+      <li>
+        Notes for useCallback: <a href="https://react.dev/reference/react/useCallback">useCallback</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>useRef :</b>
+    <ul>
+      <li>
+        useRef is a hook that gives you a mutable object you can store any value in without causing re-renders.
+      </li>
+      <li>
+        It is useful for accessing DOM elements or storing values that do not trigger re-renders when changed.
+      </li>
+      <li>
+        Syntax : 
+        <pre>
+          <code>
+            const myRef = useRef(initialValue);
+          </code>
+        </pre>
+        It returns an object like { current: initialValue }. We can read or update the value using myRef.current.
+      </li>
+      <li>
+        useRef is like state variable, but it does not trigger re-renders when changed.
+      </li>
+      <li>
+        Example: for scrolling to a specific element:
+        <pre>
+          <code>
+            import { useRef } from 'react';
+            function ScrollExample() {
+              const myRef = useRef(null);  // Create a ref to store the DOM element
+              const scrollToElement = () => {
+                if (myRef.current) {  // Check if the ref is attached to a DOM element
+                  myRef.current.scrollIntoView({ behavior: 'smooth' });  // Scroll to the element
+                }
+              };
+              return (
+                &lt;div&gt;
+                  &lt;button onClick={scrollToElement}&gt;Scroll to Element&lt;/button&gt;
+                  &lt;div style={{ height: '1000px' }}&gt;Scroll down&lt;/div&gt;
+                  &lt;div ref={myRef}&gt;Target Element&lt;/div&gt;   // Attach the ref to the target element, myRef.current = this div, just like document.getElementById('myDiv')
+                &lt;/div&gt;
+              );
+            }
+          </code>
+        </pre>
+        Component Renders => useRef() -> { current: null } => &lt;div ref={myRef}&gt; -> React fills in 'current' with the DOM element => user clicks button => myRef.current.scrollIntoView() -> scrolls to the target element.
+      </li>
+      <li>
+        Notes for useRef: <a href="https://react.dev/reference/react/useRef">useRef</a>
       </li>
     </ul>
   </li>
