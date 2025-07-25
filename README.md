@@ -516,9 +516,9 @@
             import { ThemeContext } from './ThemeContext';
             function App() {
               return (
-                <ThemeContext.Provider value="dark">
-                  <ChildComponent />
-                </ThemeContext.Provider>
+                &lt;ThemeContext.Provider value="dark"&gt;
+                  &lt;ChildComponent /&gt;
+                &lt;/ThemeContext.Provider&gt;
               );
             }
           </code>
