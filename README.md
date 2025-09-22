@@ -1,3 +1,9 @@
+  <h1>
+    <a href="https://chatgpt.com/share/68d15ce8-d594-8006-bbf2-5696527ade97">
+      ChatGpt Notes for Namaste React Course
+    </a>
+  </h1>
+  
   <h1>Episode 1 : Inception</h1>
   <li>
     The costliest operation in browsers is DOM manipulation and that's why React was created. Since React uses a virtual DOM, it minimizes the number of direct DOM manipulations, making updates faster and more efficient.
