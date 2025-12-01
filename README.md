@@ -321,6 +321,7 @@
       <li>React cleans up the previous effect (for <code>{ id: 10 }</code>)</li>
       <li>React runs the new effect associated with <code>{ id: 20 }</code></li>
     </ul>
+    React only runs the effects after letting the browser paint. This makes your app faster as most effects don’t need to block screen updates. Effect cleanup is also delayed. The previous effect is cleaned up after the re-render with new props:
   </li>
 </ul>
   </li>
