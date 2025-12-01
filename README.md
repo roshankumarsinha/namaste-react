@@ -260,6 +260,9 @@
   <li>
     Read useState document from : <a href="https://react.dev/reference/react/useState">React useState</a>
   </li>
+  <li>
+    Important thing about useState : <a href="https://chatgpt.com/share/692dbf8b-5cfc-8006-98c6-d922d941feb1">React useState</a>
+  </li>
   <h1>Episode 6 : Exploring the world</h1>
   <li>
     <b>useEffect hooks :</b>
