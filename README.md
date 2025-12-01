@@ -261,7 +261,68 @@
     Read useState document from : <a href="https://react.dev/reference/react/useState">React useState</a>
   </li>
   <li>
-    Important thing about useState : <a href="https://chatgpt.com/share/692dbf8b-5cfc-8006-98c6-d922d941feb1">React useState</a>
+    Important thing about useState : <a href="https://chatgpt.com/share/692dbf8b-5cfc-8006-98c6-d922d941feb1">ChatGpt</a>
+  </li>
+  <li>
+    Every time a component renders, React executes the function again from start to end.
+  </li>
+  <li>
+    Let say initial value of count is 0. When we click the button, setCount(count + 1) is called.
+  </li>
+  <li>
+    This schedules a state update. React will then re-render the component with the new state value (count = 1). The function will run again and count will be constant throughout that render and will be 1.
+  </li>
+  <li>
+    Each render is like taking a snapshot of the component at that time. The state values are fixed for that render.
+  </li>
+  <li>
+    If you call them later (such as inside setTimeout, onClick, or async functions), they still use that old remembered state, not the latest one.
+  </li>
+  <li>
+    Similar way it works for effect functions in useEffect. They also "capture" the state values from the render when they were defined.
+  </li>
+  <li>
+    Example to illustrate this:
+    <ul>
+      <li>
+    Initial Render (state = 0)
+    <ul>
+      <li>React asks for UI with state = 0</li>
+      <li>Component returns: &lt;p&gt;You clicked 0 times&lt;/p&gt;</li>
+      <li>Component also provides effect: () =&gt; { document.title = 'You clicked 0 times' }</li>
+      <li>React updates the DOM</li>
+      <li>Browser paints UI on screen</li>
+      <li>React runs the effect from this render → document.title = 'You clicked 0 times'</li>
+    </ul>
+  </li>
+
+  <li>
+    After Click (state updates to 1)
+    <ul>
+      <li>Component requests: set state to 1</li>
+      <li>React asks for UI with updated state = 1</li>
+      <li>Component returns: &lt;p&gt;You clicked 1 times&lt;/p&gt;</li>
+      <li>Component also provides new effect: () =&gt; { document.title = 'You clicked 1 times' }</li>
+      <li>React updates the DOM with new UI</li>
+      <li>Browser paints updated UI</li>
+      <li>React runs the effect for this render → document.title = 'You clicked 1 times'</li>
+    </ul>
+  </li>
+  </ul>
+  </li>
+  <li>
+    Cleanup function in useEffect:
+    <ul>
+  <li>
+    Render with id = 20
+    <ul>
+      <li>React renders UI for <code>{ id: 20 }</code></li>
+      <li>The browser paints the UI → UI for <code>{ id: 20 }</code> becomes visible on screen</li>
+      <li>React cleans up the previous effect (for <code>{ id: 10 }</code>)</li>
+      <li>React runs the new effect associated with <code>{ id: 20 }</code></li>
+    </ul>
+  </li>
+</ul>
   </li>
   <h1>Episode 6 : Exploring the world</h1>
   <li>
