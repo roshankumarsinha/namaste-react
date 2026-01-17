@@ -29,7 +29,7 @@
         </ul>
       </li>
       <li>
-        React is now available in the global scope (window.React, window.ReactDOM), and you can use it in <.script> tags like in the example.
+        React is now available in the global scope (window.React, window.ReactDOM), and you can use it in &lt;script&gt; tags like in the example.
       </li>
     </ul>
   </li>
