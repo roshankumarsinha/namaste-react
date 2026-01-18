@@ -759,7 +759,7 @@
       </li>
       <li>
         Other reasons why redux is fast is it updates only those components that are subscribed to the updated slice, and it uses a diffing algorithm to compare the old and new state.
-        The other components that are not subscribed to the updated slice will not re-render, so it is fast.
+        The other components that are not subscribed to the updated slice will not re-render, so it is fast. On the other hand, if we use Context API, then all the children components will re-render, even if like 99 children components not need to update that context state. But in Redux, we can use the useSelector hook to only subscribe to the slices that we need, so only that component will re-render.
       </li>
     </ul>
   </li>
