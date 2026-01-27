@@ -323,6 +323,76 @@
     </ul>
     React only runs the effects after letting the browser paint. This makes your app faster as most effects don’t need to block screen updates. Effect cleanup is also delayed. The previous effect is cleaned up after the re-render with new props:
   </li>
+  <li>
+  <ul>
+    <h2>React State Batching & Updater Functions</h2>
+
+<li>
+  <b>What happens when we change 2 or more state variables in React?</b>
+  <ul>
+    <li>
+      React batches multiple state updates together and performs a single re-render at the end.
+    </li>
+    <li>
+      This is called <b>automatic batching</b> (introduced in React 18 for all updates).
+    </li>
+    <li>
+      So if you call <code>setState</code> multiple times in the same event handler, React will only re-render once.
+    </li>
+  </ul>
+</li>
+
+<li>
+  <b>Difference between direct value vs updater function:</b>
+  <ul>
+    <li>
+      <b>Using direct value:</b>
+      <pre>
+        <code>
+function handleClick() {
+  setAge(age + 1); // setAge(42 + 1)
+  setAge(age + 1); // setAge(42 + 1)
+  setAge(age + 1); // setAge(42 + 1)
+}
+// Result: age = 43 (NOT 45!)
+        </code>
+      </pre>
+      <ul>
+        <li>All three calls use the same <code>age</code> value (42) from the current render.</li>
+        <li>React batches these updates, but since all use the same stale value, the final result is 43.</li>
+        <li>Think of it as: React queues all updates, but each sees the same snapshot of state.</li>
+      </ul>
+    </li>
+    <li>
+      <b>Using updater function:</b>
+      <pre>
+        <code>
+function handleClick() {
+  setAge(a => a + 1); // setAge(42 => 43)
+  setAge(a => a + 1); // setAge(43 => 44)
+  setAge(a => a + 1); // setAge(44 => 45)
+}
+// Result: age = 45
+        </code>
+      </pre>
+      <ul>
+        <li>The updater function receives the <b>pending state</b> (not the current render's state).</li>
+        <li>Each updater function is added to a queue and executed in order.</li>
+        <li>Each function receives the result of the previous update as its input.</li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+<li>
+  <b>When to use updater functions:</b>
+  <ul>
+    <li>When the new state depends on the previous state value.</li>
+    <li>When you need to update state multiple times in the same event.</li>
+    <li>When updating state in async callbacks where state might be stale.</li>
+  </ul>
+</li>
+  </li>
 </ul>
   </li>
   <h1>Episode 6 : Exploring the world</h1>
@@ -356,6 +426,105 @@
       </li>
       <li>
         Read useLayoutEffect document from : <a href="https://react.dev/reference/react/useLayoutEffect">React useLayoutEffect</a>
+      </li>
+      <li>
+        <h2>Multiple useEffect Hooks</h2>
+
+<li>
+  <b>How multiple useEffect hooks work:</b>
+  <ul>
+    <li>
+      You can have multiple <code>useEffect</code> hooks in a single component.
+    </li>
+    <li>
+      They run in the order they are defined (top to bottom).
+    </li>
+    <li>
+      Each <code>useEffect</code> is independent and has its own dependency array.
+    </li>
+    <li>
+      This is actually a recommended pattern - separate concerns into different effects.
+    </li>
+  </ul>
+</li>
+
+<li>
+  <b>Execution Order Example:</b>
+  <pre>
+    <code>
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  const [name, setName] = useState('');
+
+useEffect(() => {
+console.log('Effect 1: Runs on every render');
+});
+
+useEffect(() => {
+console.log('Effect 2: Runs only on mount');
+}, []);
+
+useEffect(() => {
+console.log('Effect 3: Runs when count changes');
+}, [count]);
+
+useEffect(() => {
+console.log('Effect 4: Runs when name changes');
+}, [name]);
+
+return &lt;div&gt;...&lt;/div&gt;;
+}
+</code>
+
+  </pre>
+</li>
+
+<li>
+  <b>Execution Timeline:</b>
+  <ul>
+    <li>
+      <b>On Initial Mount:</b> Effect 1 → Effect 2 → Effect 3 → Effect 4 (all run in order)
+    </li>
+    <li>
+      <b>When count changes:</b> Effect 1 → Effect 3 (only effects with matching dependencies)
+    </li>
+    <li>
+      <b>When name changes:</b> Effect 1 → Effect 4 (only effects with matching dependencies)
+    </li>
+  </ul>
+</li>
+
+<li>
+  <b>Cleanup Order:</b>
+  <ul>
+    <li>
+      If effects have cleanup functions, cleanups run before the new effects.
+    </li>
+    <li>
+      Cleanup order: Cleanup 1 → Cleanup 2 → ... → Then Effect 1 → Effect 2 → ...
+    </li>
+    <li>
+      Example:
+      <pre>
+        <code>
+useEffect(() => {
+  console.log('Effect 1 runs');
+  return () => console.log('Cleanup 1 runs');
+}, [count]);
+
+useEffect(() => {
+console.log('Effect 2 runs');
+return () => console.log('Cleanup 2 runs');
+}, [count]);
+
+// When count changes:
+// Output: Cleanup 1 runs → Cleanup 2 runs → Effect 1 runs → Effect 2 runs
+</code>
+</pre>
+</li>
+
+  </ul>
+</li>
       </li>
     </ul>
   </li>
