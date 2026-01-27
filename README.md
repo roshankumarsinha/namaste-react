@@ -9,6 +9,139 @@
     The costliest operation in browsers is DOM manipulation and that's why React was created. Since React uses a virtual DOM, it minimizes the number of direct DOM manipulations, making updates faster and more efficient.
   </li>
   <li>
+    <h1>Why React is Fast - Virtual DOM</h1>
+    <ul>
+      <li>
+        <b>Why is the Real DOM slow?</b>
+        <ul>
+          <li>
+            DOM manipulation is the costliest operation in browsers.
+          </li>
+          <li>
+            Every time you change the DOM, the browser has to:
+            <ul>
+              <li>Recalculate CSS (styles)</li>
+              <li>Recalculate layout (reflow)</li>
+              <li>Repaint the screen</li>
+            </ul>
+          </li>
+          <li>
+            If you update 10 elements one by one, the browser does this 10 times!
+          </li>
+        </ul>
+      </li>
+      <li>
+  <b>What is Virtual DOM?</b>
+  <ul>
+    <li>
+      Virtual DOM is a lightweight JavaScript object (a copy/representation of the real DOM).
+    </li>
+    <li>
+      It's just a tree of plain JavaScript objects that mirrors the structure of the actual DOM.
+    </li>
+    <li>
+      Example:
+      <pre>
+        <code>
+// Real DOM
+&lt;div id="app"&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;p&gt;World&lt;/p&gt;
+&lt;/div&gt;
+
+// Virtual DOM (simplified representation)
+{
+type: 'div',
+props: { id: 'app' },
+children: [
+{ type: 'h1', props: {}, children: ['Hello'] },
+{ type: 'p', props: {}, children: ['World'] }
+]
+}
+</code>
+
+</pre>
+</li>
+
+  </ul>
+      </li>
+      <li>
+  <b>How Virtual DOM makes React fast:</b>
+  <ul>
+    <li>
+      <b>Step 1 - Render to Virtual DOM:</b> When state changes, React creates a NEW virtual DOM tree.
+    </li>
+    <li>
+      <b>Step 2 - Diffing:</b> React compares the new virtual DOM with the previous virtual DOM using a "diffing algorithm".
+    </li>
+    <li>
+      <b>Step 3 - Find Minimal Changes:</b> React identifies exactly what changed (added, removed, or updated nodes).
+    </li>
+    <li>
+      <b>Step 4 - Batch Update Real DOM:</b> React updates ONLY the changed parts of the real DOM in a single batch.
+    </li>
+  </ul>
+</li>
+
+<li>
+  <b>Why is this faster?</b>
+  <ul>
+    <li>
+      <b>JavaScript operations are fast:</b> Comparing two JS objects (virtual DOM) is much faster than manipulating the real DOM.
+    </li>
+    <li>
+      <b>Batched updates:</b> Instead of updating the DOM 10 times, React batches all changes and updates once.
+    </li>
+    <li>
+      <b>Minimal DOM manipulation:</b> Only the parts that actually changed are updated, not the entire page.
+    </li>
+    <li>
+      <b>Avoids unnecessary reflows:</b> Fewer DOM changes = fewer layout recalculations.
+    </li>
+  </ul>
+</li>
+
+<li>
+  <b>Key Optimizations in React's Diffing Algorithm:</b>
+  <ul>
+    <li>
+      <b>Same type elements:</b> React reuses the DOM node and only updates changed attributes.
+    </li>
+    <li>
+      <b>Different type elements:</b> React destroys the old tree and builds a new one.
+    </li>
+    <li>
+      <b>Keys in lists:</b> React uses keys to identify which items changed, moved, or were added/removed.
+    </li>
+    <li>
+      <b>O(n) complexity:</b> Instead of O(n³) for generic tree diff, React achieves O(n) by making assumptions about the tree structure.
+    </li>
+  </ul>
+</li>
+
+<li>
+  <b>React Fiber (React 16+):</b>
+  <ul>
+    <li>
+      Fiber is the new reconciliation engine that makes React even faster.
+    </li>
+    <li>
+      It allows React to:
+      <ul>
+        <li>Split rendering work into chunks</li>
+        <li>Pause work and come back to it later</li>
+        <li>Prioritize different types of updates</li>
+        <li>Abort work if it's no longer needed</li>
+      </ul>
+    </li>
+    <li>
+      This enables features like Concurrent Mode and Suspense.
+    </li>
+  </ul>
+</li>
+    </ul>
+  </li>
+  <li>
     A CDN (Content Delivery Network) is a network of servers distributed across different locations that helps deliver content (like images, videos, websites, etc.) to users faster and more efficiently.
   </li>
   <li>
@@ -520,6 +653,7 @@ return () => console.log('Cleanup 2 runs');
 // When count changes:
 // Output: Cleanup 1 runs → Cleanup 2 runs → Effect 1 runs → Effect 2 runs
 </code>
+
 </pre>
 </li>
 
