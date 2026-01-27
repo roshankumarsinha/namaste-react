@@ -846,31 +846,225 @@ return () => console.log('Cleanup 2 runs');
     </ul>
   </li>
   <li>
-    <b>Controlled components and Uncontrolled Components :-</b>
-    <ul>
-      <li>
-        Controlled components are components that do not manage their own state. Instead, they receive their state and update functions as props from a parent component.
-      </li>
-      <li>
-        Uncontrolled components are components that manage their own state internally.
-      </li>
-      <li>
-        Controlled components are easier to test and debug, while uncontrolled components are easier to implement.
-      </li>
-      <li>
-        Example of controlled component:
-        <pre>
-          <code>
-            function ControlledInput({ value, onChange }) {
-              return (
-                &lt;input type="text" value={value} onChange={onChange} /&gt;
-              );
-            }
-          </code>
-        </pre>
-      </li>
-    </ul>
-  </li>
+  <b>Controlled Component:</b>
+  <ul>
+    <li>
+      A component where React controls the form element's value through state.
+    </li>
+    <li>
+      The input's value is driven by React state, and every change goes through a handler.
+    </li>
+    <li>
+      <b>Single source of truth:</b> React state is the source of truth for the input value.
+    </li>
+    <li>
+      Example:
+      <pre>
+        <code>
+function ControlledInput() {
+  const [value, setValue] = useState('');
+
+const handleChange = (e) => {
+setValue(e.target.value); // React controls the value
+};
+
+return (
+&lt;input
+type="text"
+value={value} // Value comes from state
+onChange={handleChange} // Every change updates state
+/&gt;
+);
+}
+</code>
+
+</pre>
+</li>
+<li>
+<b>Pros:</b>
+<ul>
+<li>Full control over form data</li>
+<li>Easy validation on every keystroke</li>
+<li>Can conditionally disable submit button</li>
+<li>Can format input (e.g., force uppercase)</li>
+</ul>
+</li>
+
+  </ul>
+</li>
+
+<li>
+  <b>Uncontrolled Component:</b>
+  <ul>
+    <li>
+      A component where the DOM itself handles the form element's value.
+    </li>
+    <li>
+      You use a <code>ref</code> to access the value when needed (like on submit).
+    </li>
+    <li>
+      <b>Source of truth:</b> The DOM is the source of truth.
+    </li>
+    <li>
+      Example:
+      <pre>
+        <code>
+function UncontrolledInput() {
+  const inputRef = useRef(null);
+
+const handleSubmit = (e) => {
+e.preventDefault();
+console.log(inputRef.current.value); // Access DOM directly
+};
+
+return (
+&lt;form onSubmit={handleSubmit}&gt;
+&lt;input
+type="text"
+ref={inputRef} // Use ref to access value
+defaultValue="initial" // Use defaultValue, not value
+/&gt;
+&lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+);
+}
+</code>
+
+</pre>
+</li>
+<li>
+<b>Pros:</b>
+<ul>
+<li>Less code to write</li>
+<li>Better for simple forms</li>
+<li>Easier integration with non-React code</li>
+<li>Slightly better performance (no re-render on every keystroke)</li>
+</ul>
+</li>
+
+  </ul>
+</li>
+
+<li>
+  <b>Quick Comparison:</b>
+  <pre>
+    <code>
+| Feature              | Controlled          | Uncontrolled        |
+|----------------------|---------------------|---------------------|
+| Source of truth      | React state         | DOM                 |
+| Value access         | From state          | Via ref             |
+| Validation           | On every change     | On submit           |
+| Re-renders           | On every keystroke  | Only when needed    |
+| Use case             | Complex forms       | Simple forms        |
+| Attribute used       | value               | defaultValue        |
+    </code>
+  </pre>
+</li>
+
+<li>
+  <b>When to use which:</b>
+  <ul>
+    <li><b>Controlled:</b> When you need instant validation, formatting, or conditional logic based on input.</li>
+    <li><b>Uncontrolled:</b> When you just need the value on submit, or integrating with third-party libraries.</li>
+  </ul>
+</li>
+<li>
+  <b>Pure Component:</b>
+  <ul>
+    <li>
+      A component that always renders the same output for the same props and state.
+    </li>
+    <li>
+      It has no side effects during rendering (no API calls, no mutations, no random values).
+    </li>
+    <li>
+      Think of it like a mathematical function: f(x) = 2x always returns the same result for same x.
+    </li>
+    <li>
+      Example:
+      <pre>
+        <code>
+// ✅ Pure Component - Same input always gives same output
+function Greeting({ name }) {
+  return &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+}
+
+// ✅ Pure Component - Only depends on props
+function PriceDisplay({ price, currency }) {
+return &lt;span&gt;{currency}{price.toFixed(2)}&lt;/span&gt;;
+}
+</code>
+
+</pre>
+</li>
+<li>
+<b>Rules for Pure Components:</b>
+<ul>
+<li>Don't mutate props or state during render</li>
+<li>Don't make API calls during render</li>
+<li>Don't use Math.random() or Date.now() during render</li>
+<li>Don't modify external variables during render</li>
+</ul>
+</li>
+
+  </ul>
+</li>
+
+<li>
+  <b>Impure Component:</b>
+  <ul>
+    <li>
+      A component that may produce different outputs for the same inputs.
+    </li>
+    <li>
+      It has side effects during rendering or depends on external mutable data.
+    </li>
+    <li>
+      Example:
+      <pre>
+        <code>
+// ❌ Impure - Uses Math.random() during render
+function RandomGreeting({ name }) {
+  const random = Math.random();  // Different on every render!
+  return &lt;h1&gt;Hello, {name}! Your number: {random}&lt;/h1&gt;;
+}
+
+// ❌ Impure - Mutates external variable during render
+let count = 0;
+function Counter() {
+count++; // Side effect during render!
+return &lt;p&gt;Count: {count}&lt;/p&gt;;
+}
+
+// ❌ Impure - Uses Date during render
+function CurrentTime() {
+return &lt;p&gt;Time: {new Date().toLocaleTimeString()}&lt;/p&gt;; // Changes every render!
+}
+</code>
+
+</pre>
+</li>
+
+  </ul>
+</li>
+
+<li>
+  <b>Why Pure Components matter:</b>
+  <ul>
+    <li>
+      <b>Predictability:</b> Easier to understand and debug.
+    </li>
+    <li>
+      <b>Optimization:</b> React can skip re-rendering if props haven't changed (using React.memo).
+    </li>
+    <li>
+      <b>Concurrent Mode:</b> React may render components multiple times, pause, or restart rendering. Impure components can cause bugs.
+    </li>
+    <li>
+      <b>Testing:</b> Pure components are easier to test since they're deterministic.
+    </li>
+  </ul>
+</li>
   <li>
     <b>React Context :-</b>
     <ul>
