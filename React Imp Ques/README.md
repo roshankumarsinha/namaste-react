@@ -40,4 +40,19 @@
       <li>This has also some knowledge about react-hook-form</li>
     </ul>
   </li>
+  <li>
+    <a href="https://chatgpt.com/share/697e5dd1-a354-8006-bd7c-b5ad5b8ebbbc">Routing/Protected Routes</a>
+  </li>
+  <li>
+    <a href="https://chatgpt.com/share/697e6f9c-d3f4-8006-9fcc-68fb31d073f9">Image Slider</a>
+  </li>
+  <li>
+    <a href="https://chatgpt.com/share/697f016b-cd38-8006-b3ab-c007ff5c58e4">All about Pagination</a>
+  </li>
+  <li>
+    <a href="https://chatgpt.com/share/697f1182-e080-8006-8f5e-fea7eea7b6f1">YouTube Live Chat</a>
+  </li>
+  <li>
+    <a href="https://chatgpt.com/share/697f14e7-7090-8006-8276-fdd31585cf79">Search with AutoSuggestions</a>
+  </li>
 </ul>
