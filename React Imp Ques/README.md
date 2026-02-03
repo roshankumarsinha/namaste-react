@@ -2,6 +2,8 @@
 
 <li><a href="https://medium.com/@rahul.a1739/75-react-interview-questions-with-code-examples-for-2024-ee34d804f50f">Solve Ques No. 62, 63, 64, 66, 54</a></li>
 
+<li><a href="https://chatgpt.com/share/69823f26-2af0-8006-bbca-6b164cb18927">Implementation of debounce in React</a></li>
+
 <h2>Important LLD Questions/ Topic to Practice</h2>
 <ul>
   <li>
