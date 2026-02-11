@@ -4,6 +4,8 @@
 
 <li><a href="https://chatgpt.com/share/69823f26-2af0-8006-bbca-6b164cb18927">Implementation of debounce in React</a></li>
 
+<li><a href="https://chatgpt.com/share/698cc561-f004-8006-a3a0-7e8380caba78">Intersection Observer</a></li>
+
 <h2>Important LLD Questions/ Topic to Practice</h2>
 <ul>
   <li>
@@ -28,7 +30,7 @@
     <a href="https://chatgpt.com/share/6921b085-c450-8006-840f-b162b827f00d">Multi-Language Support</a>
   </li>
   <li>
-    <a href="https://chatgpt.com/share/697de8ca-a47c-8006-a5f1-8e06c9c2574e">Infinite-Scroll</a>
+    <a href="https://chatgpt.com/share/698cc49f-8a58-8006-867f-62417aeb9680">Infinite-Scroll</a>
   </li>
   <li>
     <a href="https://chatgpt.com/share/6921b294-5fa0-8006-b18f-f2923fdaf4b9">Implement Accordion</a>
