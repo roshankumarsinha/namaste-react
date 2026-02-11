@@ -57,6 +57,6 @@
     <a href="https://chatgpt.com/share/697f1182-e080-8006-8f5e-fea7eea7b6f1">YouTube Live Chat</a>
   </li>
   <li>
-    <a href="https://chatgpt.com/share/697f14e7-7090-8006-8276-fdd31585cf79">Search with AutoSuggestions</a>
+    <a href="https://chatgpt.com/share/698cc9fc-bf34-8006-afa8-e2c45d956ead">Search with AutoSuggestions</a>
   </li>
 </ul>
