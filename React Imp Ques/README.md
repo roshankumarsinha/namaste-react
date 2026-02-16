@@ -10,6 +10,8 @@
 
 <li><a href="https://chatgpt.com/share/69902ebf-9b5c-8006-a340-e2ec6547b21f">Implement own useMemo Hook</a></li>
 
+<li><a href="https://chatgpt.com/share/69917f7c-0ea0-8006-a5db-ac1e6b2877b0">Close Search Dropdown when clicked anywhere outside</a></li>
+
 <h2>Important LLD Questions/ Topic to Practice</h2>
 <ul>
   <li>
