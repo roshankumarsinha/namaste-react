@@ -69,6 +69,6 @@
     <a href="https://chatgpt.com/share/6990a014-e788-8006-8cbd-0b66f82483db">Paginated Post List using Load More pagination</a>
   </li>
   <li>
-    <a href="https://chatgpt.com/share/6995fda3-bc38-8006-b8c2-47e67586f964">Modal Component</a>
+    <a href="https://chatgpt.com/share/69960395-42bc-8006-b7a1-71531be5154d">Modal Component</a>
   </li>
 </ul>
