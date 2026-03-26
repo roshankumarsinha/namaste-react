@@ -80,4 +80,7 @@
   <li>
     <a href="https://chatgpt.com/share/69c42648-6580-8323-aa1e-9ec0a9669d11">Tooltip Component</a>
   </li>
+  <li>
+    <a href="https://chatgpt.com/share/69c53354-d548-8322-a1bc-fea8d17342d1">Progress Bar</a>
+  </li>
 </ul>
