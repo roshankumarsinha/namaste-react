@@ -75,7 +75,7 @@
     <a href="https://chatgpt.com/share/69c418b9-abc4-8324-815f-61a4e0383cb7">Tab Component</a>
   </li>
   <li>
-    <a href="https://chatgpt.com/share/69c41a1e-9b44-8324-8d0f-7b2c5e5c3c8e">Data Table Component</a>
+    <a href="https://chatgpt.com/share/69c42242-6fe4-8324-9a07-8bae7c3185e0">Data Table Component</a>
   </li>
   <li>
     <a href="https://chatgpt.com/share/69c42648-6580-8323-aa1e-9ec0a9669d11">Tooltip Component</a>
